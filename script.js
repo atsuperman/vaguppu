@@ -1,30 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
     const inputs = document.querySelectorAll(".value-input");
-    const totalOutput = document.getElementById("total");
+    const resultOutput = document.getElementById("result");
     const weightCategory = document.getElementById("weight-category");
     const weightInput = document.getElementById("f");
 
-    function calculateTotal() {
-        const a = parseFloat(document.getElementById("a").value) || 0;
+    function calculateResult() {
         const b = parseFloat(document.getElementById("b").value) || 0;
-        const c = parseFloat(document.getElementById("c").value) || 0;
-        const d = parseFloat(document.getElementById("d").value) || 0;
-        const e = parseFloat(document.getElementById("e").value) || 0;
         const f = parseFloat(weightInput.value) || 0;
 
-        // Example formula: total = a + b + c + d + e + f
-        // Adjust the formula as needed
-        const total = a + b + c + d + e + f;
+        // Calculate the result based on the formula b × f
+        const result = b * f;
 
-        totalOutput.value = total.toFixed(2);
+        resultOutput.value = `Rs ${result.toFixed(2)}`;
     }
 
     weightCategory.addEventListener("change", function() {
         weightInput.value = weightCategory.value;
-        calculateTotal();
+        calculateResult();
     });
 
     inputs.forEach(input => {
-        input.addEventListener("input", calculateTotal);
+        input.addEventListener("input", calculateResult);
     });
 });
