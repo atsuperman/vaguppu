@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const weightInput = document.getElementById("f");
     const bInput = document.getElementById("b");
     const resultOutput = document.getElementById("result");
+    const coolieOutput = document.getElementById("coolie");
 
     function calculateResult() {
         const b = parseFloat(bInput.value) || 0;
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const result = b * f;
 
         resultOutput.value = `Rs ${result.toFixed(2)}`;
+        coolieOutput.value = `Rs ${result.toFixed(2)}`;
     }
 
     weightCategory.addEventListener("change", function() {
