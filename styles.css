@@ -41,6 +41,10 @@ label {
     font-size: 16px;
 }
 
+.value-input {
+    flex-grow: 1;
+}
+
 #result, #coolie {
     background-color: #e9e9e9;
     color: #333;
@@ -57,9 +61,28 @@ label {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 15px;
 }
 
-.radio-group input[type="number"] {
-    margin-top: 5px;
-    margin-bottom: 15px;
+.radio-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.radio-item label {
+    margin-right: 10px;
+}
+
+.radio-item input[type="number"] {
+    flex-grow: 1;
+}
+
+.f-hidden {
+    display: none;
+}
+
+.f-visible {
+    display: block;
+    margin-top: 10px;
 }
