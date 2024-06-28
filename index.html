@@ -1,4 +1,4 @@
-<!DOCTYPE ht<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,8 +14,20 @@
             <input type="number" id="a" class="value-input" placeholder="Enter value">
         </div>
         <div class="input-group">
-            <label for="b">Moottai (b):</label>
-            <input type="number" id="b" class="value-input" placeholder="Enter value">
+            <label>Moottai, Bundle, TON (loose) (b):</label>
+            <div class="radio-group">
+                <input type="radio" id="moottai" name="b" value="moottai">
+                <label for="moottai">Moottai</label>
+                <input type="number" id="moottai-value" class="value-input" placeholder="Enter value" disabled>
+
+                <input type="radio" id="bundle" name="b" value="bundle">
+                <label for="bundle">Bundle</label>
+                <input type="number" id="bundle-value" class="value-input" placeholder="Enter value" disabled>
+
+                <input type="radio" id="ton" name="b" value="ton">
+                <label for="ton">TON (loose)</label>
+                <input type="number" id="ton-value" class="value-input" placeholder="Enter value" disabled>
+            </div>
         </div>
         <div class="input-group">
             <label for="c">Tea Kadai (c):</label>
@@ -48,4 +60,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html>
+                    </html>
