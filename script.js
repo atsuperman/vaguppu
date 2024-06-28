@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const weightInput = document.getElementById("f");
     const fContainer = document.getElementById("f-container");
     const resultOutput = document.getElementById("result");
-    const coolieOutput = document.getElementById("coolie");
+    const coolieOutput = document.getElementById("coolie-value");
 
     const radioButtons = document.querySelectorAll('input[name="b"]');
     const bValue = document.getElementById("b-value");
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const result = b * f;
 
         resultOutput.value = `Rs ${result.toFixed(2)}`;
-        coolieOutput.value = `Rs ${result.toFixed(2)}`;
+        coolieOutput.textContent = `${result.toFixed(2)}`;
     }
 
     weightCategory.addEventListener("change", function() {
