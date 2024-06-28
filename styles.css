@@ -74,15 +74,11 @@ label {
     margin-right: 10px;
 }
 
-.radio-item input[type="number"] {
-    flex-grow: 1;
-}
-
-.f-hidden {
+#f-container.f-hidden {
     display: none;
 }
 
-.f-visible {
+#f-container.f-visible {
     display: block;
     margin-top: 10px;
-}
+    }
