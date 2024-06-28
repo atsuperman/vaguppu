@@ -6,12 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const coolieOutput = document.getElementById("coolie");
 
     const radioButtons = document.querySelectorAll('input[name="b"]');
-    const b1Value = document.getElementById("b1-value");
-    const b2Value = document.getElementById("b2-value");
-    const b3Value = document.getElementById("b3-value");
+    const bValue = document.getElementById("b-value");
 
     function calculateResult() {
-        const b = parseFloat(b1Value.value) || parseFloat(b2Value.value) || parseFloat(b3Value.value) || 0;
+        const b = parseFloat(bValue.value) || 0;
         const f = parseFloat(weightInput.value) || 0;
 
         // Calculate the result based on the formula b * f
@@ -28,21 +26,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
     radioButtons.forEach(radio => {
         radio.addEventListener("change", function() {
-            b1Value.disabled = !document.getElementById("b1").checked;
-            b2Value.disabled = !document.getElementById("b2").checked;
-            b3Value.disabled = !document.getElementById("b3").checked;
+            bValue.disabled = false;
 
-            fContainer.className = "f-hidden";
-            if (document.getElementById("b1").checked || document.getElementById("b2").checked || document.getElementById("b3").checked) {
+            // Show the f-container only if b1 is selected
+            if (document.getElementById("b1").checked) {
                 fContainer.className = "f-visible";
+            } else {
+                fContainer.className = "f-hidden";
             }
 
             calculateResult();
         });
     });
 
-    b1Value.addEventListener("input", calculateResult);
-    b2Value.addEventListener("input", calculateResult);
-    b3Value.addEventListener("input", calculateResult);
+    bValue.addEventListener("input", calculateResult);
     weightInput.addEventListener("input", calculateResult);
 });
