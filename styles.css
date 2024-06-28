@@ -13,13 +13,15 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
 }
 
 h1 {
     margin-bottom: 20px;
     color: #333;
+    font-size: 1.5rem;
 }
 
 .input-group, .result-group, .coolie-group {
@@ -30,19 +32,16 @@ label {
     display: block;
     margin-bottom: 5px;
     color: #666;
+    font-size: 0.9rem;
 }
 
 .value-input, #result, #coolie {
-    width: 100%;
-    padding: 10px;
+    width: calc(100% - 20px);
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 16px;
-}
-
-.value-input {
-    flex-grow: 1;
+    font-size: 0.9rem;
 }
 
 #result, #coolie {
@@ -52,7 +51,7 @@ label {
 
 .coolie-group {
     background-color: #f0f8ff;
-    padding: 15px;
+    padding: 10px;
     border: 2px solid #007BFF;
     border-radius: 10px;
 }
@@ -81,4 +80,4 @@ label {
 #f-container.f-visible {
     display: block;
     margin-top: 10px;
-    }
+}
