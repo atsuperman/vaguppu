@@ -42,6 +42,7 @@ label {
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 0.9rem;
+    max-width: 150px; /* Fixed width to fit 7-digit numbers */
 }
 
 #result {
