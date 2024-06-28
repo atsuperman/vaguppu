@@ -22,7 +22,7 @@ h1 {
     color: #333;
 }
 
-.input-group, .result-group {
+.input-group, .result-group, .coolie-group {
     margin-bottom: 15px;
 }
 
@@ -32,7 +32,7 @@ label {
     color: #666;
 }
 
-.value-input, #result {
+.value-input, #result, #coolie {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -41,7 +41,14 @@ label {
     font-size: 16px;
 }
 
-#result {
+#result, #coolie {
     background-color: #e9e9e9;
     color: #333;
+}
+
+.coolie-group {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border: 2px solid #007BFF;
+    border-radius: 10px;
 }
