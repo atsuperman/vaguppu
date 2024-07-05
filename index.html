@@ -9,12 +9,11 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        .input-pair {
+        .input-container {
             display: flex;
-            flex-direction: column;
             margin-bottom: 10px;
         }
-        .input-pair > div {
+        .input-container > div {
             margin-right: 15px;
         }
         label {
@@ -31,8 +30,8 @@
 </head>
 <body>
     <h1>Number Input Cells</h1>
-    <div id="input-pairs">
-        <!-- Input pairs will be generated here by JavaScript -->
+    <div id="input-cells">
+        <!-- Input cells will be generated here by JavaScript -->
     </div>
 
     <div style="margin-top: 20px; font-weight: bold;">
@@ -40,15 +39,15 @@
     </div>
 
     <script>
-        // JavaScript to dynamically create input pairs
-        const inputPairsContainer = document.getElementById('input-pairs');
+        // JavaScript to dynamically create input cells
+        const inputContainer = document.getElementById('input-cells');
 
         for (let i = 0; i < 26; i++) {
             const char = String.fromCharCode(97 + i); // Get character from 'a' to 'z'
             
             // Create a container for each input pair
             const inputPairDiv = document.createElement('div');
-            inputPairDiv.classList.add('input-pair');
+            inputPairDiv.classList.add('input-container');
 
             // Create editable cell
             const editableDiv = document.createElement('div');
@@ -89,7 +88,7 @@
             inputPairDiv.appendChild(nonEditableDiv);
 
             // Append the input pair container to the main container
-            inputPairsContainer.appendChild(inputPairDiv);
+            inputContainer.appendChild(inputPairDiv);
         }
     </script>
 </body>
