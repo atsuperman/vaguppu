@@ -3,63 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Math Calculation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Number Input Cells</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .input-container {
+            margin-bottom: 10px;
+        }
+        label {
+            margin-right: 10px;
+        }
+        input[type="number"] {
+            width: 50px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Live Value Calculation</h1>
-        <div class="input-group">
-            <label for="a">Total Aal (a):</label>
-            <input type="number" id="a" class="value-input" placeholder="Enter value">
-        </div>
-        <div class="radio-group">
-            <label>Formula (b):</label>
-            <div class="radio-item">
-                <input type="radio" id="b1" name="b" value="b1">
-                <label for="b1">Moottai</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" id="b2" name="b" value="b2">
-                <label for="b2">Bundle</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" id="b3" name="b" value="b3">
-                <label for="b3">TON (loose)</label>
-            </div>
-            <div id="b-value-container">
-                <label for="b-value">Value:</label>
-                <input type="number" id="b-value" class="value-input" placeholder="Enter value">
-            </div>
-            <div id="f-container" class="f-hidden">
-                <label for="f">Weight Category (f):</label>
-                <select id="weight-category" class="value-input">
-                    <option value="11.24">30kg above (11.24)</option>
-                    <option value="8.95">29kg below (8.95)</option>
-                </select>
-                <input type="number" id="f" class="value-input" placeholder="Enter value manually">
-            </div>
-        </div>
-        <div class="input-group">
-            <label for="c">Tea Kadai (c):</label>
-            <input type="number" id="c" class="value-input" placeholder="Enter value">
-        </div>
-        <div class="input-group">
-            <label for="d">Thanni (d):</label>
-            <input type="number" id="d" class="value-input" placeholder="Enter value">
-        </div>
-        <div class="input-group">
-            <label for="e">Thutti (e):</label>
-            <input type="number" id="e" class="value-input" placeholder="Enter value">
-        </div>
-        <div class="result-group">
-            <label for="result">Result:</label>
-            <input type="text" id="result" readonly>
-        </div>
-        <div class="coolie-group" id="coolie">
-            கூலி (v): <span id="coolie-value"></span>
-        </div>
+    <h1>Number Input Cells</h1>
+    <div id="input-cells">
+        <!-- Number input cells will be generated here by JavaScript -->
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // JavaScript to dynamically create input cells
+        const inputContainer = document.getElementById('input-cells');
+        for (let i = 0; i < 26; i++) {
+            const char = String.fromCharCode(97 + i); // Get character from 'a' to 'z'
+            const div = document.createElement('div');
+            div.classList.add('input-container');
+
+            const label = document.createElement('label');
+            label.textContent = `Cell ${char}:`;
+            label.setAttribute('for', `cell-${char}`);
+
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.id = `cell-${char}`;
+            input.name = `cell-${char}`;
+
+            div.appendChild(label);
+            div.appendChild(input);
+            inputContainer.appendChild(div);
+        }
+    </script>
 </body>
-    </html>
+</html>
