@@ -10,10 +10,15 @@
             margin: 20px;
         }
         .input-container {
+            display: flex;
             margin-bottom: 10px;
         }
+        .input-container > div {
+            margin-right: 15px;
+        }
         label {
-            margin-right: 10px;
+            display: block;
+            margin-bottom: 5px;
         }
         input[type="number"] {
             min-width: 50px;
@@ -25,8 +30,11 @@
 </head>
 <body>
     <h1>Number Input Cells</h1>
-    <div id="input-cells">
-        <!-- Number input cells will be generated here by JavaScript -->
+    <div class="input-container" id="editable-cells">
+        <!-- Editable number input cells will be generated here by JavaScript -->
+    </div>
+    <div class="input-container" id="non-editable-cells">
+        <!-- Non-editable number input cells will be generated here by JavaScript -->
     </div>
 
     <div style="margin-top: 20px; font-weight: bold;">
@@ -35,29 +43,47 @@
 
     <script>
         // JavaScript to dynamically create input cells
-        const inputContainer = document.getElementById('input-cells');
+        const editableContainer = document.getElementById('editable-cells');
+        const nonEditableContainer = document.getElementById('non-editable-cells');
+
         for (let i = 0; i < 26; i++) {
             const char = String.fromCharCode(97 + i); // Get character from 'a' to 'z'
-            const div = document.createElement('div');
-            div.classList.add('input-container');
 
-            const label = document.createElement('label');
-            label.textContent = char;
-            label.setAttribute('for', char);
+            // Create editable cell
+            const editableDiv = document.createElement('div');
+            const editableLabel = document.createElement('label');
+            editableLabel.textContent = char + '1';
+            editableLabel.setAttribute('for', char + '1');
 
-            const input = document.createElement('input');
-            input.type = 'number';
-            input.id = char;
-            input.name = char;
+            const editableInput = document.createElement('input');
+            editableInput.type = 'number';
+            editableInput.id = char + '1';
+            editableInput.name = char + '1';
 
             // Adjust input width based on input value length
-            input.addEventListener('input', function() {
+            editableInput.addEventListener('input', function() {
                 this.style.width = (this.value.length + 1) * 10 + 'px';
             });
 
-            div.appendChild(label);
-            div.appendChild(input);
-            inputContainer.appendChild(div);
+            editableDiv.appendChild(editableLabel);
+            editableDiv.appendChild(editableInput);
+            editableContainer.appendChild(editableDiv);
+
+            // Create non-editable cell
+            const nonEditableDiv = document.createElement('div');
+            const nonEditableLabel = document.createElement('label');
+            nonEditableLabel.textContent = char + '1';
+            nonEditableLabel.setAttribute('for', 'non-' + char + '1');
+
+            const nonEditableInput = document.createElement('input');
+            nonEditableInput.type = 'number';
+            nonEditableInput.id = 'non-' + char + '1';
+            nonEditableInput.name = 'non-' + char + '1';
+            nonEditableInput.readOnly = true;
+
+            nonEditableDiv.appendChild(nonEditableLabel);
+            nonEditableDiv.appendChild(nonEditableInput);
+            nonEditableContainer.appendChild(nonEditableDiv);
         }
     </script>
 </body>
