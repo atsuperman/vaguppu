@@ -97,14 +97,20 @@
             const a = parseFloat(document.getElementById('a').value) || 0;
             const b = parseFloat(document.getElementById('b').value) || 0;
             const c = parseFloat(document.getElementById('c').value) || 0;
+            const d = parseFloat(document.getElementById('d').value) || 0;
+
             const a1 = document.getElementById('non-a1');
             const b1 = document.getElementById('non-b1');
+            const c1 = document.getElementById('non-c1');
 
             const a1Result = a * b;
             a1.value = a1Result;
 
             const b1Result = c + a1Result;
             b1.value = b1Result;
+
+            const c1Result = b1Result - d;
+            c1.value = c1Result;
         }
     </script>
 </body>
