@@ -11,9 +11,14 @@
         }
         .input-container {
             display: flex;
+            flex-direction: column;
             margin-bottom: 10px;
         }
-        .input-container > div {
+        .input-pair {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .input-pair > div {
             margin-right: 15px;
         }
         label {
@@ -30,11 +35,8 @@
 </head>
 <body>
     <h1>Number Input Cells</h1>
-    <div class="input-container" id="editable-cells">
-        <!-- Editable number input cells will be generated here by JavaScript -->
-    </div>
-    <div class="input-container" id="non-editable-cells">
-        <!-- Non-editable number input cells will be generated here by JavaScript -->
+    <div id="input-pairs">
+        <!-- Input pairs will be generated here by JavaScript -->
     </div>
 
     <div style="margin-top: 20px; font-weight: bold;">
@@ -42,12 +44,15 @@
     </div>
 
     <script>
-        // JavaScript to dynamically create input cells
-        const editableContainer = document.getElementById('editable-cells');
-        const nonEditableContainer = document.getElementById('non-editable-cells');
+        // JavaScript to dynamically create input pairs
+        const inputPairsContainer = document.getElementById('input-pairs');
 
         for (let i = 0; i < 26; i++) {
             const char = String.fromCharCode(97 + i); // Get character from 'a' to 'z'
+            
+            // Create a container for each input pair
+            const inputPairDiv = document.createElement('div');
+            inputPairDiv.classList.add('input-pair');
 
             // Create editable cell
             const editableDiv = document.createElement('div');
@@ -67,7 +72,6 @@
 
             editableDiv.appendChild(editableLabel);
             editableDiv.appendChild(editableInput);
-            editableContainer.appendChild(editableDiv);
 
             // Create non-editable cell
             const nonEditableDiv = document.createElement('div');
@@ -83,7 +87,13 @@
 
             nonEditableDiv.appendChild(nonEditableLabel);
             nonEditableDiv.appendChild(nonEditableInput);
-            nonEditableContainer.appendChild(nonEditableDiv);
+
+            // Append both editable and non-editable cells to the input pair container
+            inputPairDiv.appendChild(editableDiv);
+            inputPairDiv.appendChild(nonEditableDiv);
+
+            // Append the input pair container to the main container
+            inputPairsContainer.appendChild(inputPairDiv);
         }
     </script>
 </body>
