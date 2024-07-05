@@ -63,7 +63,7 @@
             // Adjust input width based on input value length
             editableInput.addEventListener('input', function() {
                 this.style.width = (this.value.length + 1) * 10 + 'px';
-                updateResult();
+                updateResults();
             });
 
             editableDiv.appendChild(editableLabel);
@@ -92,16 +92,19 @@
             inputContainer.appendChild(inputPairDiv);
         }
 
-        // Function to update the result in the non-editable cell a1
-        function updateResult() {
-            const a = document.getElementById('a').value;
-            const b = document.getElementById('b').value;
+        // Function to update the results in the non-editable cells
+        function updateResults() {
+            const a = parseFloat(document.getElementById('a').value) || 0;
+            const b = parseFloat(document.getElementById('b').value) || 0;
+            const c = parseFloat(document.getElementById('c').value) || 0;
             const a1 = document.getElementById('non-a1');
-            if (a && b) {
-                a1.value = a * b;
-            } else {
-                a1.value = '';
-            }
+            const b1 = document.getElementById('non-b1');
+
+            const a1Result = a * b;
+            a1.value = a1Result;
+
+            const b1Result = c + a1Result;
+            b1.value = b1Result;
         }
     </script>
 </body>
