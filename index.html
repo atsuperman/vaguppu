@@ -155,11 +155,21 @@
             const d1Result = e !== 0 ? c1Result / e : 'NaN'; // Avoid division by zero
             d1.value = d1Result;
 
-            // Update message container with a1 calculation in the format: "a text X b text = a1 text" on one line, "+ c text" on the next line
+            // Update message container with the desired format
             const aText = document.getElementById('a').value || 0;
             const bText = document.getElementById('b').value || 0;
             const cText = document.getElementById('c').value || 0;
-            messageContainer.textContent = `${aText} X ${bText} = ${a1Result}\n+ ${cText}`;
+            const dText = document.getElementById('d').value || 0;
+            const eText = document.getElementById('e').value || 0;
+
+            messageContainer.textContent = 
+                `${aText} X ${bText} = ${a1Result}\n` +
+                `+ ${cText}\n` +
+                `= ${b1Result}\n` +
+                `- ${dText}\n` +
+                `= ${c1Result}\n` +
+                `÷ ${eText}\n` +
+                `= ${d1Result}`;
         }
 
         // Add event listener to the button to create additional cells
