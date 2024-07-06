@@ -107,43 +107,73 @@
             editableDiv.appendChild(editableLabel);
             editableDiv.appendChild(editableInput);
 
-            // Append the input pair container to the main container
+            // Create non-editable cell (except for a1)
+            const nonEditableDiv = document.createElement('div');
+            const nonEditableLabel = document.createElement('label');
+            nonEditableLabel.textContent = char + '1';
+            nonEditableLabel.setAttribute('for', 'non-' + char + '1');
+
+            const nonEditableInput = document.createElement('input');
+            nonEditableInput.type = 'number';
+            nonEditableInput.id = 'non-' + char + '1';
+            nonEditableInput.name = 'non-' + char + '1';
+            nonEditableInput.readOnly = true;
+
+            if (char !== 'a') {
+                nonEditableDiv.appendChild(nonEditableInput);
+            }
+
+            nonEditableDiv.appendChild(nonEditableLabel);
+
+            // Append both editable and non-editable cells to the input pair container
             inputPairDiv.appendChild(editableDiv);
+            inputPairDiv.appendChild(nonEditableDiv);
 
             // Append the input pair container to the main container
             inputContainer.appendChild(inputPairDiv);
         }
 
-        // Function to update the results in the message container
+        // Function to update the results in the non-editable cells
         function updateResults() {
-            const values = {};
-            let message = '';
+            const a = parseFloat(document.getElementById('a').value) || 0;
+            const b = parseFloat(document.getElementById('b').value) || 0;
+            const c = parseFloat(document.getElementById('c').value) || 0;
+            const d = parseFloat(document.getElementById('d').value) || 0;
+            const e = parseFloat(document.getElementById('e').value) || 0;
 
-            // Collect values from input fields
-            for (let i = 0; i < 26; i++) {
-                const char = String.fromCharCode(97 + i);
-                const value = parseFloat(document.getElementById(char).value) || 0;
-                values[char] = value;
-            }
+            const a1 = a * b;
 
-            // Perform calculations
-            for (let i = 0; i < 26; i++) {
-                const char = String.fromCharCode(97 + i);
-                const nextChar = String.fromCharCode(97 + i + 1);
+            const b1 = document.getElementById('non-b1');
+            const c1 = document.getElementById('non-c1');
+            const d1 = document.getElementById('non-d1');
 
-                if (char === 'z') {
-                    // Last calculation for z
-                    const result = values[char] + values['a'];
-                    message += `+ ${values[char]} = ${result}\n`;
-                } else {
-                    // Other calculations
-                    const result = values[char] + values[nextChar];
-                    message += `${char.toUpperCase()} + ${nextChar} = ${result}\n`;
-                }
-            }
+            const b1Result = c + a1;
+            b1.value = b1Result;
 
-            // Update message container with the calculated values
-            messageContainer.textContent = message;
+            const c1Result = b1Result - d;
+            c1.value = c1Result;
+
+            const d1Result = e !== 0 ? c1Result / e : 'NaN'; // Avoid division by zero
+            d1.value = d1Result;
+
+            // Update the a1 label with the a1 value
+            document.querySelector('label[for="non-a1"]').textContent = 'a1 ' + a1;
+
+            // Update message container with the desired format
+            const aText = document.getElementById('a').value || 0;
+            const bText = document.getElementById('b').value || 0;
+            const cText = document.getElementById('c').value || 0;
+            const dText = document.getElementById('d').value || 0;
+            const eText = document.getElementById('e').value || 0;
+
+            messageContainer.textContent = 
+                `${aText} X ${bText} = ${a1}\n` +
+                `+ ${cText}\n` +
+                `= ${b1Result}\n` +
+                `- ${dText}\n` +
+                `= ${c1Result}\n` +
+                `÷ ${eText}\n` +
+                `= ${d1Result}`;
         }
 
         // Add event listener to the button to create additional cells
@@ -169,8 +199,26 @@
                 editableDiv.appendChild(editableLabel);
                 editableDiv.appendChild(editableInput);
 
-                // Append the input pair container to the additional container
+                // Create non-editable cell
+                const nonEditableDiv = document.createElement('div');
+                const nonEditableLabel = document.createElement('label');
+                nonEditableLabel.textContent = 'k' + i;
+                nonEditableLabel.setAttribute('for', 'non-k' + i);
+
+                const nonEditableInput = document.createElement('input');
+                nonEditableInput.type = 'number';
+                nonEditableInput.id = 'non-k' + i;
+                nonEditableInput.name = 'non-k' + i;
+                nonEditableInput.readOnly = true;
+
+                nonEditableDiv.appendChild(nonEditableLabel);
+                nonEditableDiv.appendChild(nonEditableInput);
+
+                // Append both editable and non-editable cells to the input pair container
                 inputPairDiv.appendChild(editableDiv);
+                inputPairDiv.appendChild(nonEditableDiv);
+
+                // Append the input pair container to the additional container
                 additionalContainer.appendChild(inputPairDiv);
             }
 
