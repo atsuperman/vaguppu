@@ -112,27 +112,8 @@
             editableDiv.appendChild(editableLabel);
             editableDiv.appendChild(editableInput);
 
-            // Create non-editable cell (except for a1)
-            const nonEditableDiv = document.createElement('div');
-            const nonEditableLabel = document.createElement('label');
-            nonEditableLabel.textContent = char + '1';
-            nonEditableLabel.setAttribute('for', 'non-' + char + '1');
-
-            const nonEditableInput = document.createElement('input');
-            nonEditableInput.type = 'number';
-            nonEditableInput.id = 'non-' + char + '1';
-            nonEditableInput.name = 'non-' + char + '1';
-            nonEditableInput.readOnly = true;
-
-            if (char !== 'a') {
-                nonEditableDiv.appendChild(nonEditableInput);
-            }
-
-            nonEditableDiv.appendChild(nonEditableLabel);
-
             // Append both editable and non-editable cells to the input pair container
             inputPairDiv.appendChild(editableDiv);
-            inputPairDiv.appendChild(nonEditableDiv);
 
             // Append the input pair container to the main container
             inputContainer.appendChild(inputPairDiv);
@@ -148,7 +129,6 @@
             const f = parseFloat(document.getElementById('f').value) || 0;
 
             const a1 = a * b;
-
             const b1 = c + a1;
             const c1 = b1 - d;
             const d1 = e !== 0 ? c1 / e : 'NaN'; // Avoid division by zero
