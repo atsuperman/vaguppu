@@ -45,14 +45,11 @@
             padding: 10px 20px;
             font-size: 16px;
         }
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div id="message-container" class="message-container">
-        <!-- a1 value will be displayed here -->
+        <!-- Calculation message will be displayed here -->
     </div>
 
     <h1>Number Input Cells</h1>
@@ -110,7 +107,7 @@
             editableDiv.appendChild(editableLabel);
             editableDiv.appendChild(editableInput);
 
-            // Create non-editable cell
+            // Create non-editable cell (except for a1)
             const nonEditableDiv = document.createElement('div');
             const nonEditableLabel = document.createElement('label');
             nonEditableLabel.textContent = char + '1';
@@ -122,13 +119,11 @@
             nonEditableInput.name = 'non-' + char + '1';
             nonEditableInput.readOnly = true;
 
-            // Hide the a1 cell
-            if (char === 'a') {
-                nonEditableInput.classList.add('hidden');
+            if (char !== 'a') {
+                nonEditableDiv.appendChild(nonEditableInput);
             }
 
             nonEditableDiv.appendChild(nonEditableLabel);
-            nonEditableDiv.appendChild(nonEditableInput);
 
             // Append both editable and non-editable cells to the input pair container
             inputPairDiv.appendChild(editableDiv);
@@ -146,15 +141,13 @@
             const d = parseFloat(document.getElementById('d').value) || 0;
             const e = parseFloat(document.getElementById('e').value) || 0;
 
-            const a1 = document.getElementById('non-a1');
+            const a1 = a * b;
+
             const b1 = document.getElementById('non-b1');
             const c1 = document.getElementById('non-c1');
             const d1 = document.getElementById('non-d1');
 
-            const a1Result = a * b;
-            a1.value = a1Result;
-
-            const b1Result = c + a1Result;
+            const b1Result = c + a1;
             b1.value = b1Result;
 
             const c1Result = b1Result - d;
@@ -170,8 +163,11 @@
             const dText = document.getElementById('d').value || 0;
             const eText = document.getElementById('e').value || 0;
 
+            // Update the a1 label with the a1 value
+            document.querySelector('label[for="non-a1"]').textContent = 'a1 ' + a1;
+
             messageContainer.textContent = 
-                `${aText} X ${bText} = ${a1Result}\n` +
+                `${aText} X ${bText} = ${a1}\n` +
                 `+ ${cText}\n` +
                 `= ${b1Result}\n` +
                 `- ${dText}\n` +
