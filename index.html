@@ -17,6 +17,7 @@
             margin-bottom: 20px;
             font-size: 18px;
             text-align: center;
+            white-space: pre-line; /* Preserve new lines */
         }
         .input-container {
             display: flex;
@@ -154,10 +155,11 @@
             const d1Result = e !== 0 ? c1Result / e : 'NaN'; // Avoid division by zero
             d1.value = d1Result;
 
-            // Update message container with a1 calculation in the format: "a text X b text = a1 text"
+            // Update message container with a1 calculation in the format: "a text X b text = a1 text" on one line, "+ c text" on the next line
             const aText = document.getElementById('a').value || 0;
             const bText = document.getElementById('b').value || 0;
-            messageContainer.textContent = `${aText} X ${bText} = ${a1Result}`;
+            const cText = document.getElementById('c').value || 0;
+            messageContainer.textContent = `${aText} X ${bText} = ${a1Result}\n+ ${cText}`;
         }
 
         // Add event listener to the button to create additional cells
