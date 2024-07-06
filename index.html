@@ -59,7 +59,15 @@
 
         for (let i = 0; i < 26; i++) {
             const char = String.fromCharCode(97 + i); // Get character from 'a' to 'z'
-            
+            let labelText = char; // Default label text
+
+            // Custom labels for specific cells
+            if (char === 'a') labelText += ' Total Moottai';
+            if (char === 'b') labelText += ' Rate';
+            if (char === 'c') labelText += ' Mamul';
+            if (char === 'd') labelText += ' Tea Vadai';
+            if (char === 'e') labelText += ' Total Aal';
+
             // Create a container for each input pair
             const inputPairDiv = document.createElement('div');
             inputPairDiv.classList.add('input-container');
@@ -67,7 +75,7 @@
             // Create editable cell
             const editableDiv = document.createElement('div');
             const editableLabel = document.createElement('label');
-            editableLabel.textContent = char + (char === 'a' ? ' Total Moottai' : '');
+            editableLabel.textContent = labelText;
             editableLabel.setAttribute('for', char);
 
             const editableInput = document.createElement('input');
