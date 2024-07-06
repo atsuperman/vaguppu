@@ -9,6 +9,15 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        .message-container {
+            background-color: #f0f8ff;
+            border: 1px solid #add8e6;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
         .input-container {
             display: flex;
             margin-bottom: 10px;
@@ -38,6 +47,10 @@
     </style>
 </head>
 <body>
+    <div id="message-container" class="message-container">
+        <!-- a1 value will be displayed here -->
+    </div>
+
     <h1>Number Input Cells</h1>
     <div id="input-cells">
         <!-- Input cells will be generated here by JavaScript -->
@@ -56,6 +69,7 @@
     <script>
         // JavaScript to dynamically create input cells
         const inputContainer = document.getElementById('input-cells');
+        const messageContainer = document.getElementById('message-container');
 
         for (let i = 0; i < 26; i++) {
             const char = String.fromCharCode(97 + i); // Get character from 'a' to 'z'
@@ -139,6 +153,9 @@
 
             const d1Result = e !== 0 ? c1Result / e : 'NaN'; // Avoid division by zero
             d1.value = d1Result;
+
+            // Update message container with a1 value
+            messageContainer.textContent = `a1: ${a1Result}`;
         }
 
         // Add event listener to the button to create additional cells
