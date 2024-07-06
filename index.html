@@ -51,6 +51,10 @@
     <div id="message-container" class="message-container">
         <!-- Calculation message will be displayed here -->
     </div>
+    
+    <div id="second-message-container" class="message-container">
+        <!-- Second message container for f cell will be displayed here -->
+    </div>
 
     <h1>Number Input Cells</h1>
     <div id="input-cells">
@@ -68,71 +72,6 @@
     </div>
 
     <script>
-        // JavaScript to dynamically create input cells
-        const inputContainer = document.getElementById('input-cells');
-        const messageContainer = document.getElementById('message-container');
-
-        for (let i = 0; i < 26; i++) {
-            const char = String.fromCharCode(97 + i); // Get character from 'a' to 'z'
-            let labelText = char; // Default label text
-
-            // Custom labels for specific cells
-            if (char === 'a') labelText += ' Total Moottai';
-            if (char === 'b') labelText += ' Rate';
-            if (char === 'c') labelText += ' Mamul';
-            if (char === 'd') labelText += ' Tea Vadai';
-            if (char === 'e') labelText += ' Total Aal';
-
-            // Create a container for each input pair
-            const inputPairDiv = document.createElement('div');
-            inputPairDiv.classList.add('input-container');
-
-            // Create editable cell
-            const editableDiv = document.createElement('div');
-            const editableLabel = document.createElement('label');
-            editableLabel.textContent = labelText;
-            editableLabel.setAttribute('for', char);
-
-            const editableInput = document.createElement('input');
-            editableInput.type = 'number';
-            editableInput.id = char;
-            editableInput.name = char;
-
-            // Adjust input width based on input value length
-            editableInput.addEventListener('input', function() {
-                this.style.width = (this.value.length + 1) * 10 + 'px';
-                updateResults();
-            });
-
-            editableDiv.appendChild(editableLabel);
-            editableDiv.appendChild(editableInput);
-
-            // Create non-editable cell (except for a1)
-            const nonEditableDiv = document.createElement('div');
-            const nonEditableLabel = document.createElement('label');
-            nonEditableLabel.textContent = char + '1';
-            nonEditableLabel.setAttribute('for', 'non-' + char + '1');
-
-            const nonEditableInput = document.createElement('input');
-            nonEditableInput.type = 'number';
-            nonEditableInput.id = 'non-' + char + '1';
-            nonEditableInput.name = 'non-' + char + '1';
-            nonEditableInput.readOnly = true;
-
-            if (char !== 'a') {
-                nonEditableDiv.appendChild(nonEditableInput);
-            }
-
-            nonEditableDiv.appendChild(nonEditableLabel);
-
-            // Append both editable and non-editable cells to the input pair container
-            inputPairDiv.appendChild(editableDiv);
-            inputPairDiv.appendChild(nonEditableDiv);
-
-            // Append the input pair container to the main container
-            inputContainer.appendChild(inputPairDiv);
-        }
-
         // Function to update the results in the non-editable cells
         function updateResults() {
             const a = parseFloat(document.getElementById('a').value) || 0;
@@ -140,24 +79,13 @@
             const c = parseFloat(document.getElementById('c').value) || 0;
             const d = parseFloat(document.getElementById('d').value) || 0;
             const e = parseFloat(document.getElementById('e').value) || 0;
+            const f = parseFloat(document.getElementById('f').value) || 0;
 
             const a1 = a * b;
 
-            const b1 = document.getElementById('non-b1');
-            const c1 = document.getElementById('non-c1');
-            const d1 = document.getElementById('non-d1');
-
-            const b1Result = c + a1;
-            b1.value = b1Result;
-
-            const c1Result = b1Result - d;
-            c1.value = c1Result;
-
-            const d1Result = e !== 0 ? c1Result / e : 'NaN'; // Avoid division by zero
-            d1.value = d1Result;
-
-            // Update the a1 label with the a1 value
-            document.querySelector('label[for="non-a1"]').textContent = 'a1 ' + a1;
+            const b1 = c + a1;
+            const c1 = b1 - d;
+            const d1 = e !== 0 ? c1 / e : 'NaN'; // Avoid division by zero
 
             // Update message container with the desired format
             const aText = document.getElementById('a').value || 0;
@@ -165,66 +93,19 @@
             const cText = document.getElementById('c').value || 0;
             const dText = document.getElementById('d').value || 0;
             const eText = document.getElementById('e').value || 0;
+            const fText = document.getElementById('f').value || 0;
 
-            messageContainer.textContent = 
+            document.getElementById('message-container').textContent = 
                 `${aText} X ${bText} = ${a1}\n` +
                 `+ ${cText}\n` +
-                `= ${b1Result}\n` +
+                `= ${b1}\n` +
                 `- ${dText}\n` +
-                `= ${c1Result}\n` +
+                `= ${c1}\n` +
                 `÷ ${eText}\n` +
-                `= ${d1Result}`;
+                `= ${d1}`;
+
+            document.getElementById('second-message-container').textContent = `f ${fText}`;
         }
-
-        // Add event listener to the button to create additional cells
-        document.getElementById('add-button').addEventListener('click', function() {
-            const additionalContainer = document.getElementById('additional-cells');
-
-            for (let i = 1; i <= 10; i++) {
-                // Create a container for each input pair
-                const inputPairDiv = document.createElement('div');
-                inputPairDiv.classList.add('input-container');
-
-                // Create editable cell
-                const editableDiv = document.createElement('div');
-                const editableLabel = document.createElement('label');
-                editableLabel.textContent = 'w' + i;
-                editableLabel.setAttribute('for', 'w' + i);
-
-                const editableInput = document.createElement('input');
-                editableInput.type = 'number';
-                editableInput.id = 'w' + i;
-                editableInput.name = 'w' + i;
-
-                editableDiv.appendChild(editableLabel);
-                editableDiv.appendChild(editableInput);
-
-                // Create non-editable cell
-                const nonEditableDiv = document.createElement('div');
-                const nonEditableLabel = document.createElement('label');
-                nonEditableLabel.textContent = 'k' + i;
-                nonEditableLabel.setAttribute('for', 'non-k' + i);
-
-                const nonEditableInput = document.createElement('input');
-                nonEditableInput.type = 'number';
-                nonEditableInput.id = 'non-k' + i;
-                nonEditableInput.name = 'non-k' + i;
-                nonEditableInput.readOnly = true;
-
-                nonEditableDiv.appendChild(nonEditableLabel);
-                nonEditableDiv.appendChild(nonEditableInput);
-
-                // Append both editable and non-editable cells to the input pair container
-                inputPairDiv.appendChild(editableDiv);
-                inputPairDiv.appendChild(nonEditableDiv);
-
-                // Append the input pair container to the additional container
-                additionalContainer.appendChild(inputPairDiv);
-            }
-
-            // Disable the button after creating the cells
-            this.disabled = true;
-        });
     </script>
 </body>
 </html>
