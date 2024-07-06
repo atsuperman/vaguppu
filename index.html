@@ -45,6 +45,9 @@
             padding: 10px 20px;
             font-size: 16px;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -118,6 +121,11 @@
             nonEditableInput.id = 'non-' + char + '1';
             nonEditableInput.name = 'non-' + char + '1';
             nonEditableInput.readOnly = true;
+
+            // Hide the a1 cell
+            if (char === 'a') {
+                nonEditableInput.classList.add('hidden');
+            }
 
             nonEditableDiv.appendChild(nonEditableLabel);
             nonEditableDiv.appendChild(nonEditableInput);
