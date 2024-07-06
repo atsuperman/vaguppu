@@ -36,12 +36,6 @@
             padding: 2px;
             box-sizing: content-box;
         }
-        .additional-cells {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
-        }
     </style>
 </head>
 <body>
@@ -68,8 +62,8 @@
         const messageContainer = document.getElementById('message-container');
         const secondMessageContainer = document.getElementById('second-message-container');
 
-        for (let i = 0; i < 26; i++) {
-            const char = String.fromCharCode(97 + i); // Get character from 'a' to 'z'
+        for (let i = 0; i < 6; i++) {
+            const char = String.fromCharCode(97 + i); // Get character from 'a' to 'f'
             let labelText = char; // Default label text
 
             // Custom labels for specific cells
@@ -126,9 +120,6 @@
             const dText = document.getElementById('d').value || 0;
             const eText = document.getElementById('e').value || 0;
             const fText = document.getElementById('f').value || 0;
-
-            // Update the a1 label with the a1 value
-            document.querySelector('label[for="non-a1"]').textContent = 'a1 ' + a1;
 
             messageContainer.textContent = 
                 `${aText} X ${bText} = ${a1}\n` +
