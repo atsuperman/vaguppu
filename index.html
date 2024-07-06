@@ -20,11 +20,10 @@
             white-space: pre-line; /* Preserve new lines */
         }
         .input-container {
-            display: flex;
-            margin-bottom: 10px;
-        }
-        .input-container > div {
-            margin-right: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
@@ -38,6 +37,9 @@
         }
         .additional-cells {
             margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
         }
         button {
             display: block;
@@ -57,7 +59,7 @@
     </div>
 
     <h1>Number Input Cells</h1>
-    <div id="input-cells">
+    <div id="input-cells" class="input-container">
         <!-- Input cells will be generated here by JavaScript -->
     </div>
 
@@ -89,11 +91,9 @@
             if (char === 'e') labelText += ' Total Aal';
 
             // Create a container for each input pair
-            const inputPairDiv = document.createElement('div');
-            inputPairDiv.classList.add('input-container');
+            const editableDiv = document.createElement('div');
 
             // Create editable cell
-            const editableDiv = document.createElement('div');
             const editableLabel = document.createElement('label');
             editableLabel.textContent = labelText;
             editableLabel.setAttribute('for', char);
@@ -112,11 +112,8 @@
             editableDiv.appendChild(editableLabel);
             editableDiv.appendChild(editableInput);
 
-            // Append both editable and non-editable cells to the input pair container
-            inputPairDiv.appendChild(editableDiv);
-
-            // Append the input pair container to the main container
-            inputContainer.appendChild(inputPairDiv);
+            // Append the editable cell container to the main container
+            inputContainer.appendChild(editableDiv);
         }
 
         // Function to update the results in the non-editable cells
@@ -160,7 +157,6 @@
             for (let i = 1; i <= 10; i++) {
                 // Create a container for each input pair
                 const inputPairDiv = document.createElement('div');
-                inputPairDiv.classList.add('input-container');
 
                 // Create editable cell
                 const editableDiv = document.createElement('div');
