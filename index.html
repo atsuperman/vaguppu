@@ -40,12 +40,6 @@
 <body>
     <h1>Number Input Cells</h1>
     <div id="input-cells">
-        <!-- Text "Total Moottai" above the 'a' cell -->
-        <div class="input-container">
-            <div style="flex: 1; text-align: center;">
-                <strong>Total Moottai</strong>
-            </div>
-        </div>
         <!-- Input cells will be generated here by JavaScript -->
     </div>
 
@@ -73,7 +67,7 @@
             // Create editable cell
             const editableDiv = document.createElement('div');
             const editableLabel = document.createElement('label');
-            editableLabel.textContent = char;
+            editableLabel.textContent = char + (char === 'a' ? ' Total Moottai' : '');
             editableLabel.setAttribute('for', char);
 
             const editableInput = document.createElement('input');
