@@ -149,7 +149,7 @@
             const b1 = c + a1;
             const c1 = b1 - d;
             const d1 = e !== 0 ? c1 / e : 'NaN'; // Avoid division by zero
-            const e1 = f + g;
+            const e1 = (h * g) / ((e - f) || 1); // Avoid division by zero
             const f1 = e1 - h;
             const g1 = i * j;
             const h1 = g1 / (k || 1); // Avoid division by zero
