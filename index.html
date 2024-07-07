@@ -52,6 +52,10 @@
         <!-- Input cells will be generated here by JavaScript -->
     </div>
 
+    <div id="result-cells" class="input-container">
+        <!-- Result cells will be generated here by JavaScript -->
+    </div>
+
     <div style="margin-top: 20px; font-weight: bold;">
         மொத்த ஆள்
     </div>
@@ -59,11 +63,15 @@
     <script>
         // JavaScript to dynamically create input cells
         const inputContainer = document.getElementById('input-cells');
+        const resultContainer = document.getElementById('result-cells');
         const messageContainer = document.getElementById('message-container');
         const secondMessageContainer = document.getElementById('second-message-container');
 
-        for (let i = 0; i < 6; i++) {
-            const char = String.fromCharCode(97 + i); // Get character from 'a' to 'f'
+        const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
+        letters.forEach((char, i) => {
+            if (i > 6) return; // Limit to 'g'
+
             let labelText = char; // Default label text
 
             // Custom labels for specific cells
@@ -72,6 +80,7 @@
             if (char === 'c') labelText += ' Mamul';
             if (char === 'd') labelText += ' Tea Vadai';
             if (char === 'e') labelText += ' Total Aal';
+            if (char === 'g') labelText += ' PT or LT';
 
             // Create a container for each input pair
             const editableDiv = document.createElement('div');
@@ -97,7 +106,31 @@
 
             // Append the editable cell container to the main container
             inputContainer.appendChild(editableDiv);
-        }
+        });
+
+        letters.forEach((char, i) => {
+            if (i > 6) return; // Limit to 'g'
+
+            // Create a container for each result pair
+            const nonEditableDiv = document.createElement('div');
+
+            // Create non-editable cell
+            const nonEditableLabel = document.createElement('label');
+            nonEditableLabel.textContent = char + '1';
+            nonEditableLabel.setAttribute('for', 'non-' + char + '1');
+
+            const nonEditableInput = document.createElement('input');
+            nonEditableInput.type = 'number';
+            nonEditableInput.id = 'non-' + char + '1';
+            nonEditableInput.name = 'non-' + char + '1';
+            nonEditableInput.readOnly = true;
+
+            nonEditableDiv.appendChild(nonEditableLabel);
+            nonEditableDiv.appendChild(nonEditableInput);
+
+            // Append the non-editable cell container to the result container
+            resultContainer.appendChild(nonEditableDiv);
+        });
 
         // Function to update the results in the non-editable cells
         function updateResults() {
@@ -107,11 +140,17 @@
             const d = parseFloat(document.getElementById('d').value) || 0;
             const e = parseFloat(document.getElementById('e').value) || 0;
             const f = parseFloat(document.getElementById('f').value) || 0;
+            const g = parseFloat(document.getElementById('g').value) || 0;
 
             const a1 = a * b;
             const b1 = c + a1;
             const c1 = b1 - d;
             const d1 = e !== 0 ? c1 / e : 'NaN'; // Avoid division by zero
+
+            document.getElementById('non-a1').value = a1;
+            document.getElementById('non-b1').value = b1;
+            document.getElementById('non-c1').value = c1;
+            document.getElementById('non-d1').value = d1;
 
             // Update message container with the desired format
             const aText = document.getElementById('a').value || 0;
