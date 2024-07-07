@@ -147,10 +147,10 @@
             const c1 = b1 - d;
             const d1 = e !== 0 ? c1 / e : 'NaN'; // Avoid division by zero
 
-            document.getElementById('non-a1').value = a1;
-            document.getElementById('non-b1').value = b1;
-            document.getElementById('non-c1').value = c1;
-            document.getElementById('non-d1').value = d1;
+            updateResultCell('non-a1', a1);
+            updateResultCell('non-b1', b1);
+            updateResultCell('non-c1', c1);
+            updateResultCell('non-d1', d1);
 
             // Update message container with the desired format
             const aText = document.getElementById('a').value || 0;
@@ -170,6 +170,13 @@
                 `= ${d1}`;
 
             secondMessageContainer.textContent = `f ${fText}`;
+        }
+
+        // Function to update result cell with dynamic width adjustment
+        function updateResultCell(cellId, value) {
+            const cell = document.getElementById(cellId);
+            cell.value = value;
+            cell.style.width = (String(value).length + 1) * 10 + 'px';
         }
     </script>
 </body>
