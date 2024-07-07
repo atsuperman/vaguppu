@@ -20,10 +20,14 @@
             white-space: pre-line; /* Preserve new lines */
         }
         .input-container {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(100px, 1fr)); /* 3 columns per row */
+            display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 20px;
+        }
+        .cell-container {
+            min-width: 100px;
+            flex-grow: 1;
         }
         label {
             display: block;
@@ -67,11 +71,9 @@
         const messageContainer = document.getElementById('message-container');
         const secondMessageContainer = document.getElementById('second-message-container');
 
-        const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+        const letters = 'abcdefgh'.split('');
 
         letters.forEach((char, i) => {
-            if (i > 7) return; // Limit to 'h'
-
             let labelText = char; // Default label text
 
             // Custom labels for specific cells
@@ -85,6 +87,7 @@
 
             // Create a container for each input pair
             const editableDiv = document.createElement('div');
+            editableDiv.classList.add('cell-container');
 
             // Create editable cell
             const editableLabel = document.createElement('label');
@@ -110,10 +113,9 @@
         });
 
         letters.forEach((char, i) => {
-            if (i > 7) return; // Limit to 'h'
-
             // Create a container for each result pair
             const nonEditableDiv = document.createElement('div');
+            nonEditableDiv.classList.add('cell-container');
 
             // Create non-editable cell
             const nonEditableLabel = document.createElement('label');
@@ -142,6 +144,7 @@
             const e = parseFloat(document.getElementById('e').value) || 0;
             const f = parseFloat(document.getElementById('f').value) || 0;
             const g = parseFloat(document.getElementById('g').value) || 0;
+            const h = parseFloat(document.getElementById('h').value) || 0;
 
             const a1 = a * b;
             const b1 = c + a1;
