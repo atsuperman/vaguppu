@@ -150,9 +150,10 @@
             const c1 = b1 - d;
             const d1 = e !== 0 ? c1 / e : 'NaN'; // Avoid division by zero
             const e1 = (h * g) / ((e - f) || 1); // Avoid division by zero
-            const f1 = e1 - h;
-            const g1 = i * j;
-            const h1 = g1 / (k || 1); // Avoid division by zero
+            const f1 = d1 + ((e1 / e) || 0); // Avoid division by zero
+            const g1 = (d1 - e1) + ((h * g) / ((e - f) || 1) / e); // Avoid division by zero
+            const h1 = i * j;
+            const i1 = h1 / (k || 1); // Avoid division by zero
 
             updateResultCell('non-a1', a1);
             updateResultCell('non-b1', b1);
@@ -162,6 +163,7 @@
             updateResultCell('non-f1', f1);
             updateResultCell('non-g1', g1);
             updateResultCell('non-h1', h1);
+            updateResultCell('non-i1', i1);
 
             // Update message container with the desired format
             const aText = document.getElementById('a').value || 0;
