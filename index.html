@@ -71,69 +71,78 @@
         const messageContainer = document.getElementById('message-container');
         const secondMessageContainer = document.getElementById('second-message-container');
 
-        const letters = 'abcdefghijk'.split('');
+        const firstLineLetters = 'abcde'.split('');
+        const secondLineLetters = 'fgh'.split('');
+        const thirdLineLetters = 'ijk'.split('');
 
-        letters.forEach((char, i) => {
-            let labelText = char; // Default label text
+        const createCells = (letters) => {
+            letters.forEach((char, i) => {
+                let labelText = char; // Default label text
 
-            // Custom labels for specific cells
-            if (char === 'a') labelText += ' Total Moottai';
-            if (char === 'b') labelText += ' Rate';
-            if (char === 'c') labelText += ' Mamul';
-            if (char === 'd') labelText += ' Tea Vadai';
-            if (char === 'e') labelText += ' Total Aal';
-            if (char === 'g') labelText += ' PT or LT';
-            if (char === 'h') labelText += ' Moottai/ bundle';
+                // Custom labels for specific cells
+                if (char === 'a') labelText += ' Total Moottai';
+                if (char === 'b') labelText += ' Rate';
+                if (char === 'c') labelText += ' Mamul';
+                if (char === 'd') labelText += ' Tea Vadai';
+                if (char === 'e') labelText += ' Total Aal';
+                if (char === 'g') labelText += ' PT or LT';
+                if (char === 'h') labelText += ' Moottai/ bundle';
 
-            // Create a container for each input pair
-            const editableDiv = document.createElement('div');
-            editableDiv.classList.add('cell-container');
+                // Create a container for each input pair
+                const editableDiv = document.createElement('div');
+                editableDiv.classList.add('cell-container');
 
-            // Create editable cell
-            const editableLabel = document.createElement('label');
-            editableLabel.textContent = labelText;
-            editableLabel.setAttribute('for', char);
+                // Create editable cell
+                const editableLabel = document.createElement('label');
+                editableLabel.textContent = labelText;
+                editableLabel.setAttribute('for', char);
 
-            const editableInput = document.createElement('input');
-            editableInput.type = 'number';
-            editableInput.id = char;
-            editableInput.name = char;
+                const editableInput = document.createElement('input');
+                editableInput.type = 'number';
+                editableInput.id = char;
+                editableInput.name = char;
 
-            // Adjust input width based on input value length
-            editableInput.addEventListener('input', function() {
-                this.style.width = (this.value.length + 1) * 10 + 'px';
-                updateResults();
+                // Adjust input width based on input value length
+                editableInput.addEventListener('input', function() {
+                    this.style.width = (this.value.length + 1) * 10 + 'px';
+                    updateResults();
+                });
+
+                editableDiv.appendChild(editableLabel);
+                editableDiv.appendChild(editableInput);
+
+                // Append the editable cell container to the main container
+                inputContainer.appendChild(editableDiv);
             });
 
-            editableDiv.appendChild(editableLabel);
-            editableDiv.appendChild(editableInput);
+            letters.forEach((char, i) => {
+                // Create a container for each result pair
+                const nonEditableDiv = document.createElement('div');
+                nonEditableDiv.classList.add('cell-container');
 
-            // Append the editable cell container to the main container
-            inputContainer.appendChild(editableDiv);
-        });
+                // Create non-editable cell
+                const nonEditableLabel = document.createElement('label');
+                nonEditableLabel.textContent = char + '1';
+                nonEditableLabel.setAttribute('for', 'non-' + char + '1');
 
-        letters.forEach((char, i) => {
-            // Create a container for each result pair
-            const nonEditableDiv = document.createElement('div');
-            nonEditableDiv.classList.add('cell-container');
+                const nonEditableInput = document.createElement('input');
+                nonEditableInput.type = 'number';
+                nonEditableInput.id = 'non-' + char + '1';
+                nonEditableInput.name = 'non-' + char + '1';
+                nonEditableInput.readOnly = true;
 
-            // Create non-editable cell
-            const nonEditableLabel = document.createElement('label');
-            nonEditableLabel.textContent = char + '1';
-            nonEditableLabel.setAttribute('for', 'non-' + char + '1');
+                nonEditableDiv.appendChild(nonEditableLabel);
+                nonEditableDiv.appendChild(nonEditableInput);
 
-            const nonEditableInput = document.createElement('input');
-            nonEditableInput.type = 'number';
-            nonEditableInput.id = 'non-' + char + '1';
-            nonEditableInput.name = 'non-' + char + '1';
-            nonEditableInput.readOnly = true;
+                // Append the non-editable cell container to the result container
+                resultContainer.appendChild(nonEditableDiv);
+            });
+        };
 
-            nonEditableDiv.appendChild(nonEditableLabel);
-            nonEditableDiv.appendChild(nonEditableInput);
-
-            // Append the non-editable cell container to the result container
-            resultContainer.appendChild(nonEditableDiv);
-        });
+        // Create cells for each line
+        createCells(firstLineLetters);
+        createCells(secondLineLetters);
+        createCells(thirdLineLetters);
 
         // Function to update the results in the non-editable cells
         function updateResults() {
@@ -153,11 +162,19 @@
             const b1 = c + a1;
             const c1 = b1 - d;
             const d1 = e !== 0 ? c1 / e : 'NaN'; // Avoid division by zero
+            const e1 = f + g;
+            const f1 = e1 - h;
+            const g1 = i * j;
+            const h1 = g1 / (k || 1); // Avoid division by zero
 
             updateResultCell('non-a1', a1);
             updateResultCell('non-b1', b1);
             updateResultCell('non-c1', c1);
             updateResultCell('non-d1', d1);
+            updateResultCell('non-e1', e1);
+            updateResultCell('non-f1', f1);
+            updateResultCell('non-g1', g1);
+            updateResultCell('non-h1', h1);
 
             // Update message container with the desired format
             const aText = document.getElementById('a').value || 0;
