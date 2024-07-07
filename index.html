@@ -21,7 +21,7 @@
         }
         .input-container {
             display: grid;
-            grid-template-columns: repeat(5, minmax(100px, 1fr)); /* 5 columns per row */
+            grid-template-columns: repeat(3, minmax(100px, 1fr)); /* 3 columns per row */
             gap: 10px;
             margin-bottom: 20px;
         }
@@ -81,6 +81,7 @@
             if (char === 'd') labelText += ' Tea Vadai';
             if (char === 'e') labelText += ' Total Aal';
             if (char === 'g') labelText += ' PT or LT';
+            if (char === 'h') labelText += ' Moottai/ bundle';
 
             // Create a container for each input pair
             const editableDiv = document.createElement('div');
